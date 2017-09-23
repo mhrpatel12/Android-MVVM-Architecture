@@ -1,12 +1,3 @@
-/**
- * Copyright 2016 Erik Jhordan Rey. <p/> Licensed under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance with the License. You may obtain a
- * copy of the License at <p/> http://www.apache.org/licenses/LICENSE-2.0 <p/> Unless required by
- * applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See
- * the License for the specific language governing permissions and limitations under the License.
- */
-
 package com.mihir.vehiclelisting.viewmodel;
 
 import android.content.Context;
@@ -34,9 +25,9 @@ import io.reactivex.functions.Consumer;
 
 public class VehiclesViewModel extends Observable {
 
-    public ObservableInt peopleProgress;
-    public ObservableInt peopleRecycler;
-    public ObservableInt peopleLabel;
+    public ObservableInt vehicleProgress;
+    public ObservableInt vehicleRecycler;
+    public ObservableInt vehicleLabel;
     public ObservableField<String> messageLabel;
 
     private List<Vehicle> vehicleList;
@@ -48,27 +39,27 @@ public class VehiclesViewModel extends Observable {
 
         this.context = context;
         this.vehicleList = new ArrayList<>();
-        peopleProgress = new ObservableInt(View.GONE);
-        peopleRecycler = new ObservableInt(View.GONE);
-        peopleLabel = new ObservableInt(View.VISIBLE);
-        messageLabel = new ObservableField<>(context.getString(R.string.default_loading_people));
+        vehicleProgress = new ObservableInt(View.GONE);
+        vehicleRecycler = new ObservableInt(View.GONE);
+        vehicleLabel = new ObservableInt(View.VISIBLE);
+        messageLabel = new ObservableField<>(context.getString(R.string.default_loading_vehicle));
 
         initializeViews();
     }
 
     public void initializeViews() {
-        peopleLabel.set(View.GONE);
-        peopleRecycler.set(View.GONE);
-        peopleProgress.set(View.VISIBLE);
+        vehicleLabel.set(View.GONE);
+        vehicleRecycler.set(View.GONE);
+        vehicleProgress.set(View.VISIBLE);
         fetchVehiclesList();
         timer.schedule(new RefreshVehicleList(), 0, 30000);
     }
 
     class RefreshVehicleList extends TimerTask {
         public void run() {
-            peopleLabel.set(View.GONE);
-            peopleRecycler.set(View.GONE);
-            peopleProgress.set(View.VISIBLE);
+            vehicleLabel.set(View.GONE);
+            vehicleRecycler.set(View.GONE);
+            vehicleProgress.set(View.VISIBLE);
             fetchVehiclesList();
         }
     }
@@ -76,34 +67,34 @@ public class VehiclesViewModel extends Observable {
     private void fetchVehiclesList() {
 
         VehicleListingApplication vehicleListingApplication = VehicleListingApplication.create(context);
-        VehicleService peopleService = vehicleListingApplication.getVehicleService();
+        VehicleService vehicleService = vehicleListingApplication.getVehicleService();
 
-        Disposable disposable = peopleService.fetchVehicles("vehicles.json")
+        Disposable disposable = vehicleService.fetchVehicles("vehicles.json")
                 .subscribeOn(vehicleListingApplication.subscribeScheduler())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<VehicleResponse>() {
                     @Override
-                    public void accept(VehicleResponse peopleResponse) throws Exception {
-                        changeVehicleDataSet(peopleResponse.getVehicleList());
-                        peopleProgress.set(View.GONE);
-                        peopleLabel.set(View.GONE);
-                        peopleRecycler.set(View.VISIBLE);
+                    public void accept(VehicleResponse vehicleResponse) throws Exception {
+                        changeVehicleDataSet(vehicleResponse.getVehicleList());
+                        vehicleProgress.set(View.GONE);
+                        vehicleLabel.set(View.GONE);
+                        vehicleRecycler.set(View.VISIBLE);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        messageLabel.set(context.getString(R.string.error_loading_people));
-                        peopleProgress.set(View.GONE);
-                        peopleLabel.set(View.VISIBLE);
-                        peopleRecycler.set(View.GONE);
+                        messageLabel.set(context.getString(R.string.error_loading_vehicle));
+                        vehicleProgress.set(View.GONE);
+                        vehicleLabel.set(View.VISIBLE);
+                        vehicleRecycler.set(View.GONE);
                     }
                 });
         compositeDisposable.add(disposable);
     }
 
-    private void changeVehicleDataSet(List<Vehicle> peoples) {
+    private void changeVehicleDataSet(List<Vehicle> vehicles) {
         vehicleList.clear();
-        vehicleList.addAll(peoples);
+        vehicleList.addAll(vehicles);
         setChanged();
         notifyObservers();
     }

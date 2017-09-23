@@ -1,4 +1,4 @@
-package vehiclesTest;
+package vehiclesTests;
 
 import android.databinding.Observable;
 

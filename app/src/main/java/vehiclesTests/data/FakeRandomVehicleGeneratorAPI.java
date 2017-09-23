@@ -1,4 +1,4 @@
-package vehiclesTest.data;
+package vehiclesTests.data;
 
 import com.mihir.vehiclelisting.model.Vehicle;
 

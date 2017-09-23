@@ -24,7 +24,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"/>
+                android:background="?attr/colorPrimary" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -37,10 +37,10 @@
 
 
             <ProgressBar
-                android:id="@+id/progress_people"
+                android:id="@+id/progress_vehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:visibility="@{mainViewModel.peopleProgress}"/>
+                app:visibility="@{mainViewModel.vehicleProgress}" />
 
             <TextView
                 android:id="@+id/label_status"
@@ -48,17 +48,18 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@{mainViewModel.messageLabel}"
-                app:visibility="@{mainViewModel.peopleLabel}"/>
+                app:visibility="@{mainViewModel.vehicleLabel}" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_vehicles"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/card_margin_vertical_big_activity"
                 android:clipToPadding="false"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:visibility="@{mainViewModel.peopleRecycler}"
-                tools:listitem="@layout/item_vehicle"/>
+                app:visibility="@{mainViewModel.vehicleRecycler}"
+                tools:listitem="@layout/item_vehicle" />
 
 
         </LinearLayout>

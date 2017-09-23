@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity implements Observer {
         super.onCreate(savedInstanceState);
         initDataBinding();
         setSupportActionBar(activityHomeBinding.toolbar);
-        setupListPeopleView(activityHomeBinding.listVehicles);
+        setupListVehicleView(activityHomeBinding.listVehicles);
         setupObserver(vehiclesViewModel);
     }
 
@@ -33,8 +33,8 @@ public class HomeActivity extends AppCompatActivity implements Observer {
         activityHomeBinding.setMainViewModel(vehiclesViewModel);
     }
 
-    private void setupListPeopleView(RecyclerView listVehicles) {
-        VehicleAdapter adapter = new VehicleAdapter();
+    private void setupListVehicleView(RecyclerView listVehicles) {
+        VehicleAdapter adapter = new VehicleAdapter(this);
         listVehicles.setAdapter(adapter);
         listVehicles.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -1,14 +1,7 @@
 <resources>
     <string name="app_name">Vehicle Listing</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_github">Github</string>
-
-
-    <string name="error_loading_people">There seems to have been some error.</string>
-    <string name="default_loading_people">Press the button to load vehicle!</string>
+    <string name="error_loading_vehicle">There seems to have been some error.</string>
+    <string name="default_loading_vehicle">.</string>
     <string name="text_interior">Interior:</string>
     <string name="text_exterior">Exterior:</string>
     <string name="text_address">Address:</string>
