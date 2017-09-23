@@ -56,7 +56,7 @@ public class VehiclesViewModel extends Observable {
         initializeViews();
     }
 
-    private void initializeViews() {
+    public void initializeViews() {
         peopleLabel.set(View.GONE);
         peopleRecycler.set(View.GONE);
         peopleProgress.set(View.VISIBLE);
