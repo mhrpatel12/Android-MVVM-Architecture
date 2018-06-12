@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.mihir.vehiclelisting"
         minSdkVersion 21
@@ -39,24 +39,24 @@ android {
 }
 
 dependencies {
-    compile supportDependencies.appCompat
-    compile supportDependencies.design
-    compile supportDependencies.recyclerView
-    compile supportDependencies.cardView
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.design
+    implementation supportDependencies.recyclerView
+    implementation supportDependencies.cardView
 
-    compile retrofitDependencies.retrofit
-    compile retrofitDependencies.gson
-    compile retrofitDependencies.rxAdapterJava
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.gson
+    implementation retrofitDependencies.rxAdapterJava
 
-    compile rxDependencies.rxAndroid
-    compile rxDependencies.rxJava
+    implementation rxDependencies.rxAndroid
+    implementation rxDependencies.rxJava
 
-    compile circleImageView
-    compile glide
+    implementation circleImageView
+    implementation glide
 
-    androidTestCompile 'junit:junit:4.12'
-    compile 'org.robolectric:robolectric-annotations:3.0'
-    compile 'junit:junit:4.12'
-    compile 'org.robolectric:robolectric:3.0'
-    compile 'org.mockito:mockito-core:1.10.19'
+    androidTestImplementation 'junit:junit:4.12'
+    implementation 'org.robolectric:robolectric-annotations:3.0'
+    implementation 'junit:junit:4.12'
+    implementation 'org.robolectric:robolectric:3.0'
+    implementation 'org.mockito:mockito-core:1.10.19'
 }
